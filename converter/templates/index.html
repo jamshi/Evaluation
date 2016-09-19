@@ -1,0 +1,48 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evaluation Currency Converter</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+</head>
+<body>
+	<h1>Currency Converter</h1>
+	<label>Date</label>
+	<input type="text" id="datepicker">
+	<label>USD</label>
+	<input type="number" id="amt">
+	<input type="button" id="btnsubmit" value="Convert to SGD"/>
+	<br>
+	<br>
+	<span><h4>Exchange Rate</h4></span>
+	<span id="exchngRate"></span>
+	<br>
+	<span><h4>Total Amount (in SGD) </h4></span>
+	<span id="totalAmt"></span>
+<script type="text/javascript">
+$('#btnsubmit').click(function(){
+	if($( "#datepicker" ).datepicker( "getDate" ) == undefined)
+		alert('Please select a date.');
+	if($('#amt').val() == '')
+		alert('Please provide an amount');
+	$.ajax({
+	  method: "POST",
+	  url: '.',
+	  data: { date: $( "#datepicker" ).val(), amt: $('#amt').val() }
+	})
+	  .done(function( msg ) {
+	  	$('#totalAmt').text(msg.totalAmt);
+	  	$('#exchngRate').text(msg.exchangeRate);
+  });
+});
+</script>
+</body>
+</html>
