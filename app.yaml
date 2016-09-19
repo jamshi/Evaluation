@@ -1,0 +1,24 @@
+# [START django_app]
+runtime: python27
+api_version: 1
+threadsafe: yes
+version: 1
+
+handlers:
+- url: /static
+  static_dir: static/
+- url: .*
+  script: currencyconverter.wsgi.application
+
+# Only pure Python libraries can be vendored
+# Python libraries that use C extensions can
+# only be included if they are part of the App Engine SDK 
+libraries:
+- name: django
+  version: 1.10
+- name: requests
+  version: 2.11.1
+
+
+
+# [END django_app]
