@@ -13,11 +13,7 @@ handlers:
 # Only pure Python libraries can be vendored
 # Python libraries that use C extensions can
 # only be included if they are part of the App Engine SDK 
-libraries:
-- name: django
-  version: 1.5
-- name: requests
-  version: 2.11.1
+
 
 
 
